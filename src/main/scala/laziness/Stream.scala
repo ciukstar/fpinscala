@@ -52,11 +52,6 @@ sealed trait Stream[+A] {
     case _ => this
   }
 
-  def take2(n: Int): Stream[A] =
-    Stream.unfold((this,n)) {
-
-    }
-
   def take(n: Int): Stream[A] = this match {
     case Cons(h,t) if n > 1 => Stream.cons(h(), t().take(n - 1))
     case Cons(h, _) if n == 1 => Stream.cons(h(), Empty)
